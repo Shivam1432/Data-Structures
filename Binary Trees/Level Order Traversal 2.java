@@ -29,6 +29,7 @@ class Solution {
             if(node.right!=null) q.add(node.right);
         }
         result.add(0,list);
+        
     }
     return result;
     }
