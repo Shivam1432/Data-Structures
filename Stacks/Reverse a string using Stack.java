@@ -4,7 +4,7 @@ Above functions are available to you for use on stack, So just complete the belo
 static String reverseString(CQStack s, String st)
 {
   int len=st.length();  
-  s=new CQStack();
+  s=new CQStack(len);
   char[] arr=new char[len];
   for(int i=0;i<len;i++)
   {
