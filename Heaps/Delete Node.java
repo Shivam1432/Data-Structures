@@ -21,7 +21,7 @@ public class DeleteNode {
 	    int minElement, lastElement, child, now;
 	    minElement = heap[0];
 	    lastElement = heap[heapSize--];
-	    for (now = 0; now * 2 < heapSize; now = child) 
+	    for (now = 0; (now * 2)+1 < heapSize; now = child) 
 	    {
 	      child = now * 2 + 1;
 	      if (child != heapSize && heap[child + 1] < heap[child])
