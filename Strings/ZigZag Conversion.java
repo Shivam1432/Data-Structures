@@ -1,59 +1,32 @@
 class Solution {
     public String convert(String s, int numRows) {
-        int i=0,j=0;
-        int n=s.length()-1;
-        if(n<=1 || numRows<=1){
+        if (numRows == 1 || numRows >= s.length()) {
             return s;
         }
-        Map<Integer,StringBuilder> map=new HashMap<>();
-        while(i<=n){
-            while(1==1){
-                if(j>=numRows || i>n){
-                    break;
-                }
-                j++;
-                if(map.get(j)!=null){
-                    StringBuilder val=map.get(j);
-                    val.append(s.charAt(i));
-                    map.put(j,val);
-                    i++;
-                } 
-                else{
-                    StringBuilder val=new StringBuilder();
-                    val.append(s.charAt(i));
-                    map.put(j,val);
-                    i++;
-                } 
-            }
-            if(j==numRows){
-                while(1==1){
-                    if(j==1 || i>n){
-                        break;
-                    }
-                    --j;
-                   if(map.get(j)!=null){
-                    StringBuilder val=map.get(j);
-                    val.append(s.charAt(i));
-                    map.put(j,val);
-                    i++;
-                } 
-                else{
-                    StringBuilder val=new StringBuilder();
-                    val.append(s.charAt(i));
-                    map.put(j,val);
-                    i++;
-                }
-                }
-            }
-            
+
+        int idx = 0, d = 1;
+        List<Character>[] rows = new ArrayList[numRows];
+        for (int i = 0; i < numRows; i++) {
+            rows[i] = new ArrayList<>();
         }
-        StringBuilder str=new StringBuilder();
-        for(int k=1;k<=numRows;k++){
-            StringBuilder st=map.get(k);
-            if(st!=null){
-                str.append(st);
+
+        for (char c : s.toCharArray()) {
+            rows[idx].add(c);
+            if (idx == 0) {
+                d = 1;
+            } else if (idx == numRows - 1) {
+                d = -1;
+            }
+            idx += d;
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (List<Character> row : rows) {
+            for (char c : row) {
+                result.append(c);
             }
         }
-        return str.toString();
+
+        return result.toString(); 
     }
 }
